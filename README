@@ -1,0 +1,5 @@
+Torrent bot is an Jabber bot written in python that allows you to remotely
+manage your torrents via commands sent to the bot. Torrent bot connects to a
+locally running transmission (http://www.transmissionbt.com/) daemon client
+and communicates with it over its JSON-RPC API.
+
