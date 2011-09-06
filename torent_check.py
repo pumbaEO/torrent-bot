@@ -13,13 +13,15 @@ import logging
 import gettext
 from gettext import gettext as _
 gettext.textdomain('diffsamizdat')
-logging.getLogger()
-
+logging.getLogger("TorrentCheck")
+from configuration import config
+'''
 post_params = urllib.urlencode({
     'login_username' : LOGIN,
     'login_password' : PASS,
     'login' : '%C2%F5%EE%E4'
 })
+'''
 
 
 class BaseHtmlParser(sgmllib.SGMLParser):
@@ -56,8 +58,8 @@ class BaseHtmlParser(sgmllib.SGMLParser):
 
 class TorrentCheck:
     def __init__(self):
-        LOGIN   = 'login'
-        PASS    = 'pass'
+        LOGIN   =  config.get("setting","username")
+        PASS    = config.get("setting","password")
         self.post_params = urllib.urlencode({
                                 'login_username' : LOGIN,
                                 'login_password' : PASS,
@@ -116,6 +118,7 @@ def main():
 	if options.debug_mode:
 		options.logging_level = 3
 	logging.basicConfig(level=LEVELS[options.logging_level], format='%(lineno)d %(asctime)s %(levelname)s %(message)s')
+	config.load()
 	t = TorrentCheck()
 	return 
 
